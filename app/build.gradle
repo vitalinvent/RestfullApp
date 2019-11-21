@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'org.greenrobot.greendao'
 //apply plugin: 'com.jakewharton.butterknife'
 
 android {
@@ -23,6 +23,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
     }
+}
+
+greendao {
+    schemaVersion 1
+    targetGenDir 'src/main/java'
 }
 
 dependencies {
@@ -49,8 +54,8 @@ dependencies {
 
 //    implementation 'com.jakewharton:butterknife:10.0.0'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
-    implementation 'com.jakewharton:butterknife:10.2.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+//    implementation 'com.jakewharton:butterknife:10.2.0'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 //    implementation 'com.jakewharton:butterknife:10.2.0'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
 
