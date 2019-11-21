@@ -1,9 +1,9 @@
 package com.vitalinvent.restfullapp.common;
 
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 public class Errors extends AppCompatActivity {
 

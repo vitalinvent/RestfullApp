@@ -3,6 +3,7 @@ package com.vitalinvent.restfullapp;
 import android.content.Context;
 
 import com.vitalinvent.restfullapp.components.ApplicationComponent;
+import com.vitalinvent.restfullapp.components.DaggerApplicationComponent;
 import com.vitalinvent.restfullapp.fragments.fragment_main.FragmentMainComponent;
 import com.vitalinvent.restfullapp.modules.ContextModule;
 
@@ -27,4 +28,6 @@ public class ComponentsHolder {
         }
         return fragmentMainComponent;
     }
+
+    public void releaseFragmentMainComponent() { fragmentMainComponent = null;};
 }

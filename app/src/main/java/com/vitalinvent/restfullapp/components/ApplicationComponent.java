@@ -1,7 +1,16 @@
 package com.vitalinvent.restfullapp.components;
 
+import com.vitalinvent.restfullapp.fragments.fragment_main.FragmentMainComponent;
+import com.vitalinvent.restfullapp.modules.ContextModule;
+import com.vitalinvent.restfullapp.modules.DaoModule;
+
+import javax.inject.Singleton;
+
 import dagger.Component;
 
-@Component
-public class ApplicationComponent {
+@Component(modules = {ContextModule.class, DaoModule.class})
+@Singleton
+public interface ApplicationComponent {
+
+    FragmentMainComponent createFragmentMainComponent();
 }
