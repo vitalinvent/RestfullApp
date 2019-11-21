@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RestfullApp</string>
+    <string name="fragment_main_title">Restfull демо приложение </string>
 </resources>

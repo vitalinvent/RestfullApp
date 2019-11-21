@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:androi="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="?attr/actionBarSize">
+    <LinearLayout
+        android:id="@+id/fragment_select_order_layer_edit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/orders_search"
+            android:drawableLeft="@mipmap/ic_search"
+            android:textColor="#FFFFFF"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_margin="2dp"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:backgroundTint="@color/colorPrimarySubLight"/>
+
+        <EditText
+            android:textColor="#FFFFFF"
+            android:id="@+id/fragment_journal_search_order"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_margin="2dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:backgroundTint="@color/colorPrimarySubLight"/>
+        <!--android:drawableLeft="@mipmap/ic_search"-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_journal_orders_list_recyclerview"
+            android:layout_below="@id/fragment_journal_search_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <!--            style="@style/TextHeader"-->
+</RelativeLayout>
