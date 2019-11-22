@@ -5,9 +5,6 @@ import android.content.Context;
 import com.vitalinvent.restfullapp.components.ApplicationComponent;
 import com.vitalinvent.restfullapp.components.DaggerApplicationComponent;
 import com.vitalinvent.restfullapp.fragments.fragment_main.FragmentMainComponent;
-import com.vitalinvent.restfullapp.modules.ContextModule;
-import com.vitalinvent.restfullapp.modules.NetComponent;
-import com.vitalinvent.restfullapp.modules.NetModule;
 
 public class ComponentsHolder {
 
@@ -25,7 +22,7 @@ public class ComponentsHolder {
         applicationComponent= DaggerApplicationComponent
                 .builder()
                 .contextModule(new ContextModule(context))
-                .netModule(new NetModule( context.getString(R.string.server_url)))
+//                .netModule(new NetModule( context.getString(R.string.server_url)))
                 .build();
     }
     public ApplicationComponent getApplicationComponent() { return applicationComponent;}
@@ -46,4 +43,5 @@ public class ComponentsHolder {
 
     public void releaseFragmentMainComponent() { fragmentMainComponent = null;};
     public void releaseNetComponent() { netComponent = null;};
+
 }

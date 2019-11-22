@@ -5,12 +5,21 @@ package com.vitalinvent.restfullapp;
 
 import android.Manifest;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Adapter;
 
-import com.vitalinvent.restfullapp.fragments.fragment_main.FragmentMain;
+import com.vitalinvent.restfullapp.fragments.SWListFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,24 +30,46 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Restful тестовое приложение");
-//        try {
-            setContentView(R.layout.activity_main);
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//            toolbar = findViewById(R.id.toolbar);
-//            setSupportActionBar(toolbar);
-//            if (getSupportActionBar() != null) {
-//                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//                getSupportActionBar().setHomeButtonEnabled(true);
-//            }
-//            toolbar.setNavigationOnClickListener(v -> getSupportFragmentManager().popBackStack());
-            if (savedInstanceState == null) {
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.container, new FragmentMain())
-                        .commit();
-            }
-//        } catch (Exception ex) { ex.printStackTrace(); }
 
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+        if (viewPager != null) {
+            Adapter adapter = new Adapter(getSupportFragmentManager());
+            adapter.addFragment(SWListFragment.newInstance(SWListFragment.KEY_PEOPLE), getString(R.string.ui_tab_people));
+            viewPager.setAdapter(adapter);
+        }
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(viewPager);
+
+
+    }
+
+    static class Adapter extends FragmentPagerAdapter {
+        private final List<Fragment> mFragments = new ArrayList<>();
+        private final List<String> mFragmentTitles = new ArrayList<>();
+
+        public Adapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        public void addFragment(Fragment fragment, String title) {
+            mFragments.add(fragment);
+            mFragmentTitles.add(title);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragments.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragments.size();
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitles.get(position);
+        }
     }
 }
