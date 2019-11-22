@@ -15,4 +15,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolb_h"
+        android:background="@color/toolbar_bg_color"/>
+    </android.support.design.widget.AppBarLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

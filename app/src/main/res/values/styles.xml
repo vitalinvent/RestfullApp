@@ -8,8 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 <!--    <style name="TextHeader">-->
-<!--        <item name="android:textStyle">bold</item>-->
-<!--        <item name="android:textSize">20sp</item>-->
-<!--        <item name="android:textColor">@color/colorWhite</item>-->
+<!--        <user_item name="android:textStyle">bold</user_item>-->
+<!--        <user_item name="android:textSize">20sp</user_item>-->
+<!--        <user_item name="android:textColor">@color/colorWhite</user_item>-->
 <!--    </style>-->
 </resources>

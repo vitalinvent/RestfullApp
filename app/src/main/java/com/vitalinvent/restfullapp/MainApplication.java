@@ -5,6 +5,8 @@ import android.content.Context;
 import com.vitalinvent.restfullapp.common.Utils;
 import com.vitalinvent.restfullapp.common.Variables;
 
+import io.reactivex.annotations.NonNull;
+
 public class MainApplication extends android.app.Application {
 
     private ComponentsHolder componentsHolder;
@@ -25,4 +27,10 @@ public class MainApplication extends android.app.Application {
     public ComponentsHolder getComponentsHolder(){
         return componentsHolder;
     }
+
+    @NonNull
+    public static MainApplication get(@NonNull Context context) {
+        return (MainApplication) context.getApplicationContext();
+    }
+
 }
