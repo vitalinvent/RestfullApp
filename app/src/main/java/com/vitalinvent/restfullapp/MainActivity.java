@@ -21,24 +21,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Restful тестовое приложение");
-        try {
+//        try {
             setContentView(R.layout.activity_main);
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
-            toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setHomeButtonEnabled(true);
-            }
-            toolbar.setNavigationOnClickListener(v -> getSupportFragmentManager().popBackStack());
+//            toolbar = findViewById(R.id.toolbar);
+//            setSupportActionBar(toolbar);
+//            if (getSupportActionBar() != null) {
+//                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//                getSupportActionBar().setHomeButtonEnabled(true);
+//            }
+//            toolbar.setNavigationOnClickListener(v -> getSupportFragmentManager().popBackStack());
             if (savedInstanceState == null) {
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .replace(R.id.container, new FragmentMain(), FRAGMENT_MAIN_TAG)
+                        .replace(R.id.container, new FragmentMain())
                         .commit();
             }
-        } catch (Exception ex) { ex.printStackTrace(); }
+//        } catch (Exception ex) { ex.printStackTrace(); }
 
     }
 }

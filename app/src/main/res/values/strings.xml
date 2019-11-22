@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">RestfullApp</string>
     <string name="fragment_main_title">Restfull демо приложение </string>
+    <string name="server_url">http://users.bugred.ru/</string>
 </resources>

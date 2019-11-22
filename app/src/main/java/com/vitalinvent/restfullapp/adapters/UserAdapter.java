@@ -14,6 +14,7 @@ import com.vitalinvent.restfullapp.models.User;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
@@ -28,7 +29,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.inflate(R.layout.user_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_item,parent,false);
         return new UserViewHolder(view);
     }
 
@@ -43,7 +44,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public int getItemCount() {
-        return 0;
+        return users.size();
     }
 
 
@@ -58,7 +59,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
         public UserViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this,itemView);
         }
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return super.getItemViewType(position);
+    }
 }

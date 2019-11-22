@@ -10,6 +10,8 @@
         <TextView
             android:id="@+id/tvLine1"
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="30dp"
+            android:textColor="@color/colorWhite"
+            android:text="test"/>
     </LinearLayout>
 </LinearLayout>
