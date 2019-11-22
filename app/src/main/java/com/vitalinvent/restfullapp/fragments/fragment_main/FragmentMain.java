@@ -25,6 +25,8 @@ import org.greenrobot.greendao.database.Database;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -40,6 +42,7 @@ public class FragmentMain extends Fragment implements UserAdapter.ClickListener 
     DaoSession daoSession;
     UserAdapter userAdapter;
     List<User> users = new ArrayList<>();
+    @Inject Api api;
 
     @BindView(R.id.recycle_list__users)
     RecyclerView recyclerView;
@@ -70,7 +73,7 @@ public class FragmentMain extends Fragment implements UserAdapter.ClickListener 
 //        userAdapter = new UserAdapter(users);
 //        recyclerView.setAdapter(userAdapter);
 
-        users = new Api(Utils.getContext()).getUsers();
+        users = (List<User>) api.getApiService().getUsers();
         userAdapter = new UserAdapter(users);
         recyclerView.setAdapter(userAdapter);
 

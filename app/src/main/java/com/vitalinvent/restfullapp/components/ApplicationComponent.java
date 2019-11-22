@@ -13,6 +13,6 @@ import dagger.Component;
 @Singleton
 public interface ApplicationComponent {
 
-    FragmentMainComponent createFragmentMainComponent();
+    void inject(FragmentMainComponent createFragmentMainComponent);
 
 }

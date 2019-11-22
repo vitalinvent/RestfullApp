@@ -24,7 +24,7 @@ public class ComponentsHolder {
     public ApplicationComponent getApplicationComponent() { return applicationComponent;}
     public FragmentMainComponent getFragmentMainComponent(){
         if(fragmentMainComponent == null){
-            fragmentMainComponent = getApplicationComponent().createFragmentMainComponent();
+            getApplicationComponent().inject(fragmentMainComponent);//.createFragmentMainComponent();
         }
         return fragmentMainComponent;
     }
