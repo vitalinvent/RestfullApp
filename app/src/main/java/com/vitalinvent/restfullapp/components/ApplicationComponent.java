@@ -1,5 +1,6 @@
 package com.vitalinvent.restfullapp.components;
 
+import com.vitalinvent.restfullapp.fragments.fragment_detail.FragmentDetailComponent;
 import com.vitalinvent.restfullapp.fragments.fragment_main.FragmentMainComponent;
 import com.vitalinvent.restfullapp.modules.ContextModule;
 import com.vitalinvent.restfullapp.modules.DaoModule;
@@ -14,5 +15,7 @@ import dagger.Component;
 public interface ApplicationComponent {
 
     void inject(FragmentMainComponent createFragmentMainComponent);
+
+    void inject(FragmentDetailComponent createFragmentDetailComponent);
 
 }

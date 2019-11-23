@@ -36,9 +36,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         User user = users.get(position);
-        holder.tvLine1.setText((user.getName() == null) ? user.getName1() : user.getName() + " " + ((user.getFathername1() == null) ? user.getFathername1() : ""));
+        holder.tvLine1.setText((user.getName() == null) ? user.getName1() : user.getName() + " " + ((user.getFathername1() != null) ? user.getFathername1() : ""));
         holder.tvLine1.setOnClickListener(v -> {
-            clickListener.onClick(position);
+            clickListener.onClickItem(position);
         });
     }
 
@@ -49,7 +49,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
 
     public interface ClickListener {
-        void onClick(int position);
+        void onClickItem(int position);
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder {
