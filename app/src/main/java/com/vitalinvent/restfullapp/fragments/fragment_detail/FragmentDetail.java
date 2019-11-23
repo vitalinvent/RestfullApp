@@ -10,10 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.vitalinvent.restfullapp.MainActivity;
-import com.vitalinvent.restfullapp.MainApplication;
 import com.vitalinvent.restfullapp.R;
-import com.vitalinvent.restfullapp.common.Errors;
 import com.vitalinvent.restfullapp.common.Utils;
 import com.vitalinvent.restfullapp.models.DaoMaster;
 import com.vitalinvent.restfullapp.models.DaoSession;
@@ -50,41 +47,41 @@ public class FragmentDetail extends Fragment {
     String dateSelected;
     String by_userSelected;
 
-    @BindView(R.id.tv_label_email)
+    @BindView(R.id.tv_email)
     TextView email;
-    @BindView(R.id.tv_label_name)
+    @BindView(R.id.tv_name)
     TextView name;
-    @BindView(R.id.tv_label_name1)
+    @BindView(R.id.tv_name1)
     TextView name1;
-    @BindView(R.id.tv_label_hobby)
+    @BindView(R.id.tv_hobby)
     TextView hobby;
-    @BindView(R.id.tv_label_surname1)
+    @BindView(R.id.tv_surname1)
     TextView surname1;
-    @BindView(R.id.tv_label_fathername)
+    @BindView(R.id.tv_fathername)
     TextView fathername1;
-    @BindView(R.id.tv_label_cat)
+    @BindView(R.id.tv_cat)
     TextView cat;
-    @BindView(R.id.tv_label_dog)
+    @BindView(R.id.tv_dog)
     TextView dog;
-    @BindView(R.id.tv_label_parrot)
+    @BindView(R.id.tv_parrot)
     TextView parrot;
-    @BindView(R.id.tv_label_cavy)
+    @BindView(R.id.tv_cavy)
     TextView cavy;
-    @BindView(R.id.tv_label_hamster)
+    @BindView(R.id.tv_hamster)
     TextView hamster;
-    @BindView(R.id.tv_label_squirrel)
+    @BindView(R.id.tv_squirrel)
     TextView squirrel;
-    @BindView(R.id.tv_label_phone)
+    @BindView(R.id.tv_phone)
     TextView phone;
-    @BindView(R.id.tv_label_adres)
+    @BindView(R.id.tv_adres)
     TextView adres;
-    @BindView(R.id.tv_label_gender)
+    @BindView(R.id.tv_gender)
     TextView gender;
-    @BindView(R.id.tv_label_birthday)
+    @BindView(R.id.tv_birthday)
     TextView birthday;
-    @BindView(R.id.tv_label_date)
+    @BindView(R.id.tv_date)
     TextView date;
-    @BindView(R.id.tv_label_by_user)
+    @BindView(R.id.tv_by_user)
     TextView by_user;
 
     @BindView(R.id.ok_button_save)
@@ -93,23 +90,12 @@ public class FragmentDetail extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        try {
-            unbinder = ButterKnife.bind(this, rootView);
-            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.fragment_main_title);
-            MainApplication.getApplication(getActivity().getApplicationContext())
-                    .getComponentsHolder()
-                    .getFragmentDetailComponent()
-                    .inject(this);
-            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.fragment_main_title);
-        } catch (Exception ex) {
-            Errors.ShowSend(ex);
-        }
-
-        nameSelected = getArguments().getString("name");
-        name1Selected = getArguments().getString("name1");
+        rootView = inflater.inflate(R.layout.fragment_user_detail, container, false);
+        unbinder = ButterKnife.bind(this, rootView);
 
         emailSelected = getArguments().getString("email");
+        nameSelected = getArguments().getString("name");
+        name1Selected = getArguments().getString("name1");
         hobbySelected = getArguments().getString("hobby");
         surname1Selected = getArguments().getString("surname1");
         fathername1Selected = getArguments().getString("fathername1");
@@ -126,7 +112,24 @@ public class FragmentDetail extends Fragment {
         dateSelected = getArguments().getString("date");
         by_userSelected = getArguments().getString("by_user");
 
-
+        email.setText(emailSelected);
+        name.setText(nameSelected);
+        name1.setText(name1Selected);
+        hobby.setText(hobbySelected);
+        surname1.setText(surname1Selected);
+        fathername1.setText(fathername1Selected);
+        cat.setText(catSelected);
+        dog.setText(dogSelected);
+        parrot.setText(parrotSelected);
+        cavy.setText(cavySelected);
+        hamster.setText(hamsterSelected);
+        squirrel.setText(squirrelSelected);
+        phone.setText(phoneSelected);
+        adres.setText(adresSelected);
+        gender.setText(genderSelected);
+        birthday.setText(birthdaySelected);
+        date.setText(dateSelected);
+        by_user.setText(by_userSelected);
         DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(Utils.getContext(), "users_info");
         Database db = helper.getWritableDb();
         daoSession = new DaoMaster(db).newSession();
@@ -154,12 +157,13 @@ public class FragmentDetail extends Fragment {
                 user.setDate(dateSelected);
                 user.setBy_user(by_userSelected);
                 daoSession.getUserDao().insert(user);
-                getChildFragmentManager().popBackStack();
 
+                getFragmentManager().popBackStack();
+//                getChildFragmentManager().popBackStack();
 
             }
         });
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return rootView;
     }
 }

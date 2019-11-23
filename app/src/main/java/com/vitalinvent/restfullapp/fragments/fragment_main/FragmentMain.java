@@ -9,8 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
-import com.vitalinvent.restfullapp.MainActivity;
 import com.vitalinvent.restfullapp.MainApplication;
 import com.vitalinvent.restfullapp.R;
 import com.vitalinvent.restfullapp.adapters.UserAdapter;
@@ -27,7 +28,6 @@ import com.vitalinvent.restfullapp.models.User;
 import org.greenrobot.greendao.database.Database;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,11 +36,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.internal.functions.Functions;
 import retrofit2.Call;
 import retrofit2.Response;
-
-import static com.vitalinvent.restfullapp.common.Variables.FRAGMENT_DETAIL_TAG;
 
 //import androidx.annotation.NonNull;
 //import androidx.annotation.Nullable;
@@ -58,6 +55,10 @@ public class FragmentMain extends Fragment implements UserAdapter.ClickListener 
     Api api;
     @BindView(R.id.recycle_list__users)
     RecyclerView recyclerView;
+    @BindView(R.id.button_search)
+    Button button_search;
+    @BindView(R.id.orders_search)
+    EditText orders_search;
 
     public FragmentMain() {
         super();
@@ -74,12 +75,10 @@ public class FragmentMain extends Fragment implements UserAdapter.ClickListener 
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
         try {
             unbinder = ButterKnife.bind(this, rootView);
-            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.fragment_main_title);
             MainApplication.getApplication(getActivity().getApplicationContext())
                     .getComponentsHolder()
                     .getFragmentMainComponent()
                     .inject(this);
-            ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.fragment_main_title);
         } catch (Exception ex) {
             Errors.ShowSend(ex);
         }
@@ -94,49 +93,49 @@ public class FragmentMain extends Fragment implements UserAdapter.ClickListener 
 
         ((MainApplication) getActivity().getApplication()).getNetComponent().inject(this);
 
-        HashMap<String, String> requestBody = new HashMap<>();
-        requestBody.put("query", "ш");
-        api.getApiService().data(requestBody).enqueue(new retrofit2.Callback<ResultUsers>() {
-            @Override
-            public void onResponse(Call<ResultUsers> call, Response<ResultUsers> response) {
-                if (response.errorBody() != null) {
-                } else if (response.body() != null) {
-                    try {
-                        for (User user : response.body().results) {
-                            if (!contains(user, usersDB)) {
-                                users.add(user);
-                            }
-                        }
-                    } catch (Exception e) {
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResultUsers> call, Throwable t) {
-            }
-        });
-        userAdapter = new UserAdapter(this, users);
-        userAdapter.notifyDataSetChanged();
-        recyclerView.setAdapter(userAdapter);
 
 
-        //users = (List<User>) api.getApiService().getUsers();
-        users.add(new User("asda", "sdasd", "werew", "sdfsd", "zxczx", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda"));
-        users.add(new User("asda", "sdasd", "werew", "sdfsd", "zxczx", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda", "asda"));
+
         userAdapter = new UserAdapter(this, users);
         userAdapter.notifyDataSetChanged();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(userAdapter);
+        orders_search.setText("а");
+        button_search.setOnClickListener(view -> {
+            HashMap<String, String> requestBody = new HashMap<>();
+            requestBody.put("query", orders_search.getText().toString());
+            api.getApiService().data(requestBody).enqueue(new retrofit2.Callback<ResultUsers>() {
+                @Override
+                public void onResponse(Call<ResultUsers> call, Response<ResultUsers> response) {
+                    if (response.errorBody() != null) {
+                    } else if (response.body() != null) {
+                        try {
+                            for (User user : response.body().results) {
+                                if (!contains(user)) {
+                                    users.add(user);
+                                }
+                            }
+                        } catch (Exception e) {
+                        }
+                    }
+                }
 
+                @Override
+                public void onFailure(Call<ResultUsers> call, Throwable t) {
+                }
+            });
+            userAdapter = new UserAdapter(this, users);
+            recyclerView.setAdapter(userAdapter);
+            userAdapter.notifyDataSetChanged();
+
+        });
 
         return rootView;
     }
 
-    boolean contains(User user, List<User> users) {
-        for (User userItem : users) {
-            if ((userItem.getName().equals(user.getName())
-                    && (userItem.getName1().equals(user.getName1())))) {
+    boolean contains(User user) {
+        for (User userItem : usersDB) {
+            if ((userItem.getName().equals(user.getName()))) {
                 return true;
             }
         }
@@ -179,6 +178,8 @@ public class FragmentMain extends Fragment implements UserAdapter.ClickListener 
                     .replace(R.id.container, fragmentDetail, Variables.FRAGMENT_DETAIL_TAG)
                     .addToBackStack(Variables.FRAGMENT_DETAIL_TAG)
                     .commit();
-        } catch (Exception ex) { Errors.ShowSend(ex); }
+        } catch (Exception ex) {
+            Errors.ShowSend(ex);
+        }
     }
 }
