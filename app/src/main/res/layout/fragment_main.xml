@@ -11,7 +11,6 @@
         android:orientation="vertical">
         <EditText
             android:id="@+id/orders_search"
-            android:drawableLeft="@mipmap/ic_search"
             android:textColor="#FFFFFF"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -20,6 +19,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="20dp"
             android:backgroundTint="@color/colorPrimarySubLight"/>
+        <!--android:drawableLeft="@mipmap/ic_search"-->
         <EditText
             android:textColor="#FFFFFF"
             android:id="@+id/fragment_journal_search_order"

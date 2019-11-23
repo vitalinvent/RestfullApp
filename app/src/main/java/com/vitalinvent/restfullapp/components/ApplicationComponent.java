@@ -3,7 +3,6 @@ package com.vitalinvent.restfullapp.components;
 import com.vitalinvent.restfullapp.fragments.fragment_main.FragmentMainComponent;
 import com.vitalinvent.restfullapp.modules.ContextModule;
 import com.vitalinvent.restfullapp.modules.DaoModule;
-import com.vitalinvent.restfullapp.modules.NetComponent;
 import com.vitalinvent.restfullapp.modules.NetModule;
 
 import javax.inject.Singleton;
@@ -15,7 +14,5 @@ import dagger.Component;
 public interface ApplicationComponent {
 
     void inject(FragmentMainComponent createFragmentMainComponent);
-
-    void inject(NetComponent netComponent);
 
 }
